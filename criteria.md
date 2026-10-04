@@ -53,61 +53,49 @@ whether you hit them:
 
 ## 1.
 
-<!-- Your criterion. It must name a number. -->
+**Overall accuracy ≥ 0.85 on the held-out test set.**
 
-
-
-**Why this target:**
-
-
+**Why this target:** This sets a clear minimum for general correctness across
+the whole test set before looking at finer-grained behavior.
 
 ---
 
 ## 2.
 
-<!-- Your criterion. -->
+**Per-label F1 ≥ 0.70 for every label with at least 20 test examples.**
 
-
-
-**Why this target:**
-
-
+**Why this target:** Per-label F1 prevents strong majority-class performance
+from hiding a label that the classifier almost never gets right.
 
 ---
 
 ## 3.
 
-<!-- Your criterion. -->
+**Predicted label prevalence within ±10 percentage points of gold test-set
+prevalence for each label.**
 
-
-
-**Why this target:**
-
-
+**Why this target:** This catches label collapse, where the classifier
+over-predicts one or two classes and under-predicts rare ones.
 
 ---
 
 ## 4.
 
-<!-- Your criterion. -->
+**Cohen’s κ ≥ 0.75 against human labels on the held-out sample.**
 
-
-
-**Why this target:**
-
-
+**Why this target:** Kappa measures agreement beyond chance, so it is a
+stronger agreement check than raw accuracy on imbalanced label sets.
 
 ---
 
 ## 5.
 
-<!-- Your criterion. -->
+**Expected Calibration Error (ECE) ≤ 0.05, and predictions with confidence
+≥ 0.80 must have empirical precision ≥ 0.75.**
 
-
-
-**Why this target:**
-
-
+**Why this target:** Calibration makes confidence scores meaningful for
+routing, review thresholds, or abstention instead of letting them be
+decorative.
 
 ---
 
