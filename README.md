@@ -117,45 +117,48 @@ These eight synthetic comments were generated to test the definitions; they are 
 <!-- Where you collected from, how you labelled, your counts, and three hard
      cases. -->
 
-**Where the posts came from:**
+**Where the posts came from:** Public discussion comments from [Hacker News](https://news.ycombinator.com/), supplied as copied thread text. The added batches include the [FTL operating-system discussion](https://news.ycombinator.com/item?id=49944912) and [What Meta got right with Muse](https://news.ycombinator.com/item?id=49946526). Duplicate rows were removed. Some supplied comments contain internal ellipses; verify they are complete before treating the dataset as final.
 
-**How I labelled them:** <!-- Cold first? Pre-labelled with AI and corrected?
-Say so plainly — the disclosure is required, not penalised. -->
+**How I labelled them:** The CSV has 316 unique comments. It contains 101 rows marked `cold` in the supplied file and 215 AI-suggested labels marked `AI pre-label; review required`. Confirm that each `cold` row was labeled unaided; read and correct every AI-suggested label before training.
 
 **Counts per label:**
 
 | Label | Count | Share |
 |---|---|---|
-|  |  |  |
-|  |  |  |
-|  |  |  |
-| **Total** |  | 100% |
+| `analysis` | 219 | 69.3% |
+| `hot_take` | 63 | 19.9% |
+| `reaction` | 34 | 10.8% |
+| **Total** | **316** | **100%** |
+
+The dataset is above the 200-comment target and each label is below the 70% ceiling. The label balance is still uneven; review the suggested labels and add more `reaction` examples if your corrected counts become more lopsided.
 
 **Three hard cases**
 
 <!-- Any post that made you pause: what it was, which two labels it could have
      been, and what you chose. These are worth more than the easy 190. -->
 
-**1.**
-> *The post:*
->
-> *Could have been:*
->
-> *I chose, because:*
+The following are AI-identified candidate hard cases based on the current labels, not a claim about which posts personally made me pause. Confirm or replace them with the cases I actually found difficult before submission.
 
-**2.**
-> *The post:*
+**1. Candidate**
+> “As art projects go, this one has a lot of charm for me. Plenty of room for allegories (although apparently not the paperclips, haha). Timekeeping in general is a subject with depth across many domains-- particularly in software as we all know. So many different ways to do the 'same thing'.”
 >
-> *Could have been:*
+> *Could have been:* `reaction` or `analysis`
 >
-> *I chose, because:*
+> *Suggested label:* `reaction`, because it mainly expresses personal appreciation and broad reflection rather than supporting a claim with checkable evidence.
 
-**3.**
-> *The post:*
+**2. Candidate**
+> “A good analogy for German engineering.”
 >
-> *Could have been:*
+> *Could have been:* `hot_take` or `reaction`
 >
-> *I chose, because:*
+> *Suggested label:* `hot_take`, because it makes a broad evaluative claim without evidence, though it is short enough to read as a personal reaction.
+
+**3. Candidate**
+> “Having built something similar with CLIP on an M1, frame sampling rate is the whole ballgame. One frame a second on 12k videos is days, keyframes only got me to an overnight run.”
+>
+> *Could have been:* `reaction` or `analysis`
+>
+> *Suggested label:* `analysis`, because it uses firsthand timing and workload details as evidence, though its opening frames the point as personal experience.
 
 ---
 
@@ -198,7 +201,7 @@ of next unit's variance. -->
 - *What came back:*
 - *What I changed:*
 
-**Pre-labelling disclosure:**
+**Pre-labelling disclosure:** An AI assistant suggested labels for 215 comments. Those rows remain marked `AI pre-label; review required`; they still need to be read and corrected before use.
 
 <!-- ═══════════════════════ UNIT 6 — THE TEST ═══════════════════════
 
