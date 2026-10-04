@@ -166,16 +166,15 @@ The following are AI-identified candidate hard cases based on the current labels
 
 <!-- Your starting model, your settings, and anything you changed and why. -->
 
-**Base model:**
+**Base model:** `distilbert-base-uncased`
 
-**Settings:** <!-- epochs, learning rate, batch size, seed -->
+**Settings:** 3 epochs, learning rate `2e-5`, batch size 16, max length 128, seed 42.
 
-**Anything I changed from the defaults, and why:**
+**Device:** CPU (`torch 2.14.1+cpu`).
 
-**Split sizes:** <!-- train / val / test, and per-label counts in the test
-split. If a label had fewer than about 8 in test, say so — it explains a lot
-of next unit's variance. -->
+**Anything I changed from the defaults, and why:** Nothing; I used the defaults.
 
+**Split sizes:** train 220 / validation 48 / test 48. Test labels: `analysis` 33, `hot_take` 10, `reaction` 5. `reaction` has fewer than 8 test examples, so its next-unit metrics may vary noticeably.
 
 
 ---
