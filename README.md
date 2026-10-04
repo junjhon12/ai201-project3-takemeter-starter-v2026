@@ -190,17 +190,29 @@ The following are AI-identified candidate hard cases based on the current labels
 
 **Moment 1**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* Generate examples that would test the boundary between
+  evidence-backed `analysis`, unsupported `hot_take`, and immediate `reaction`.
+- *What came back:* Eight synthetic comments, including examples with specific
+  measurements, broad unsupported judgments, and personal reactions.
+- *What I changed:* I kept these examples separate from the collected posts
+  and used them to make the written label rules more concrete.
 
 **Moment 2**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* Suggest labels for an additional batch of Hacker News
+  comments.
+- *What came back:* AI-suggested labels for 215 comments, which are marked
+  `AI pre-label; review required` in `labels.csv`.
+- *What I changed:* I kept the suggestions visibly flagged rather than
+  describing them as human-verified. They are present in the labels used for
+  the current training run, so its scores measure agreement with this
+  provisional label set, not independently verified human ground truth.
 
-**Pre-labelling disclosure:** An AI assistant suggested labels for 215 comments. Those rows remain marked `AI pre-label; review required`; they still need to be read and corrected before use.
+**Pre-labelling disclosure:** An AI assistant suggested labels for 215 of the
+316 comments. I have not yet read and corrected every AI-suggested label; those
+rows remain marked `AI pre-label; review required`. The current model was
+trained using this provisional label set, so the labels must be reviewed before
+the results are treated as a final human-labeled evaluation.
 
 <!-- ═══════════════════════ UNIT 6 — THE TEST ═══════════════════════
 
