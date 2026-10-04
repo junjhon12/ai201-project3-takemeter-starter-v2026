@@ -264,22 +264,37 @@ The baseline used the definitions in `label_definitions.txt` and read `test_spli
 | 4.  |  |  |  |  |  |
 | 5.  |  |  |  |  |  |
 
+### Three-seed metrics
+
+| Measure | Seed 42 | Seed 7 | Seed 2024 | Spread |
+|---|---|---|---|---|
+| Overall accuracy | 0.688 | 0.688 | 0.688 | 0.000 |
+| Macro F1 | 0.272 | 0.272 | 0.272 | 0.000 |
+| F1 — `analysis` | 0.815 | 0.815 | 0.815 | 0.000 |
+| F1 — `hot_take` | 0.000 | 0.000 | 0.000 | 0.000 |
+| F1 — `reaction` | 0.000 | 0.000 | 0.000 | 0.000 |
+
+**Device:** CPU (`CPU`), PyTorch `2.14.1+cpu`.
+
+Accuracy moved 0.000 across seeds, so it was stable across these three splits.
+
 ### Confusion matrix
 
 <!-- ⚠️ TYPED AS A MARKDOWN TABLE. The notebook prints one ready to paste.
      An image of a matrix earns nothing. -->
 
-| true \ predicted |  |  |  |
+| true \ predicted | analysis | hot_take | reaction |
 |---|---|---|---|
-| **** |  |  |  |
-| **** |  |  |  |
-| **** |  |  |  |
+| **analysis** | 33 | 0 | 0 |
+| **hot_take** | 10 | 0 | 0 |
+| **reaction** | 5 | 0 | 0 |
 
 **My biggest off-diagonal number, and what it means:**
 <!-- Not "the model made mistakes" — WHICH boundary it didn't learn, and which
      direction. "7 real analysis posts were called hot_take and only 3 went the
      other way" is a direction, not just an error rate. -->
 
+The largest off-diagonal is 10: 10 real `hot_take` posts were called `analysis`, while 0 real `analysis` posts were called `hot_take`.
 
 
 ---
