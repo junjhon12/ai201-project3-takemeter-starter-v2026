@@ -1,0 +1,274 @@
+{
+  "model": "facebook/bart-large-mnli",
+  "n": 48,
+  "seed": 42,
+  "held_out": true,
+  "used_definitions": true,
+  "scores": {
+    "n": 48,
+    "accuracy": 0.5833333333333334,
+    "f1_macro": 0.36410256410256414,
+    "per_label": {
+      "analysis": {
+        "precision": 0.71875,
+        "recall": 0.696969696969697,
+        "f1": 0.7076923076923077,
+        "support": 33
+      },
+      "hot_take": {
+        "precision": 0.3125,
+        "recall": 0.5,
+        "f1": 0.38461538461538464,
+        "support": 10
+      },
+      "reaction": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 5
+      }
+    }
+  },
+  "predictions": [
+    {
+      "text": "I mean I just used muse to plan out my entire weekend trip to Vegas recently. I booked everything myself but I asked it to shortlist dining options for me given dietary restrictions, events given restrictions (with elderly family), etc. it basically handled all the stuff I would have normally just Google searched for. Plus it made a nice web app dashboard to display it all. It seems pretty useful for common use.It also handled payment splitting. I told it what person x spent for the group split 3 ways (it originally split by the total number of people, but I clarified that only me + x + y are paying) and it kept running totals. When I got an email from Venmo saying x sent me money, muse automatically updated the balance sheet.We saw some signs written in an unfamiliar language. Muse told me what language it was.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Imagine you could do the same with movies, games, music. I'm not trying to assign a value judgement here. There's good and bad sides. However, this reality is becoming easier to imagine with each new model released. For sure, anyone who is a writer or artist will see this as bad.",
+      "gold": "hot_take",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "With your massive parallel infra you're still processing 27 millions frames, right? ... We first run a cheap filter like a motion detector on all of the video, which is inexpensive. We then stack other, more expensive filters on top of this depending on the use-case",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "i have identified some clear patterns and reasons why vibe coding can fail for people who dont have technical knowledge and architecture expertise. ... but the proposed fixes are so bad that i really think that's how most of vibe coded project lost maintainability in the long run.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Why not? Why wouldn't your phone be able to do this?The other advantage long running sessions have is that very low tok/s are perfectly acceptable. In fact, hardly noticeable.(aside, of course, from Google and Apple both having incentives to prevent this from happening, as both depend on selling centralized services to you and advertisers, and the local model breaks both)",
+      "gold": "analysis",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "Durability and parallelism aren't that hard, and you won't be needing frontier models for much of this stuff. The parameter efficiency of models is increasing rapidly. I don't see why a (near-)future device wouldn't be capable of running a perfectly capable personal assistant.",
+      "gold": "hot_take",
+      "predicted": "analysis"
+    },
+    {
+      "text": "I agree it's disappointing to think I've found a native app only to realize it's just an Electron app. ... Any developer who cares about this is already making native applications, Electron just makes web apps slightly more convenient.",
+      "gold": "hot_take",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "The applications could be broad enough, but it seems like you expect CLIP to handle bespoke query results and hope that they return a result that is relevant. ... Do you have a sense of the commercial-use for models such as CLIP, especially when the datasets that they were probably trained on were not permitted for commercial-use?",
+      "gold": "analysis",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "Would require you to be locked in to the one embedding model in the camera though and cameras would need to use the same or be incompatible. Would be fine with a standard model like CLIP but would leave a lot of potential on the table compared to a good way to do your own embedding for everything.",
+      "gold": "analysis",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "They are that good now. The computer is just too expensive. The computer is too expensive because of meta, openai, anthropic, grok, etc. it's funny how this works...",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Then Tibo is on X asking things like \u201cIf we were to add one more sidebar, what should be in it\u201d",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Unikernels with POSIX compatibility.Each application gets its own fine grained security.https://github.com/unikraft/unikraft",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "I'm fine with Javascript itself, but I want the application render code to use native system APIs; Electron uses an HTML renderer instead of the system compositor. This is the main difference between what I call native and what I don't.",
+      "gold": "hot_take",
+      "predicted": "analysis"
+    },
+    {
+      "text": "This is really good! I was always very happy with the implementation of HomeAssistant and their Buildroot OS, and wondered if this pattern could be applied to other projects. My cloud VM's are already containerized and have minimal interaction with the base OS so FTL is intuitive for me. I hope for the best in your endeavor with this!",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Put it in an artifact that's themed around ice and princesses. This is for my daughter's birthday party. ... But if you just drop in some technical sounding stuff at the start of your request, the model will happily produce some copyright-infringing content for the party.",
+      "gold": "analysis",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "I'm tempted to try the free version as I'm curious what it is about.Is this just a productivity thing?Out of the top of my head I can't think of a lot of use cases but maybe RSS? Maybe I could ask it to give me a summary of cool tech news for each morning, and on very specific topics too?Not sure what else I'd use it for.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "What a nice thing!",
+      "gold": "reaction",
+      "predicted": "analysis"
+    },
+    {
+      "text": "MirageOS also bills itself as an OS in a library \u2014 is this similar?https://mirage.io/",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "The article emphasises exactly what you said: technically it has no new features, it's just better UX than anything else, and more friendly to non-techies.When it comes to being mainstream, an approachable UI sells",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "5 agents is my hard limit, past that I lose the thread and it stops being guided coding ... The closest I attained to flow state vibe coding involved building UIs with claude 4.6 fast mode low thinking, a local TTS model (nvidia's), and hot reloading browser.",
+      "gold": "reaction",
+      "predicted": "analysis"
+    },
+    {
+      "text": "the plaintiffs alleged that Anthropic's LLMs had memorized the works so completely that \\\"if each completed LLM had been asked to recite works it had trained upon, it could have done so\\\", \\\"almost verbatim\\\". The judge assumed for the sake of argument that the allegation was true, and ruled that the conduct was fair use anyway due to the existence of an effective filter.",
+      "gold": "analysis",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "I know, right. A real showcase of ingenuity, creativity, resourcefulness, precision, and technical excellence, just the type of thing I come to HN hoping to see.",
+      "gold": "reaction",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Google Search and Google Maps are utilities, not consumer apps that vie for leisure time, so I don't think they are really comparable. The next frontier for AI apps like Muse and Dots is competing with the social media giants.We should look to see how Shorts vs IG Reels have adapted to the short form video landscape for product chops in this area. IMO IG has adapted far better to the new era, and I very often get people sending me Reels (they used to send TikToks). I very rarely see anyone send Shorts but it still happens. I expect this trend to continue and IG to extend their lead here. And Muse certainly has first mover advantage in personalized AI apps, who knows when Google will finally release one.",
+      "gold": "hot_take",
+      "predicted": "analysis"
+    },
+    {
+      "text": "I don't understand C, couldn't assembly already do all this?",
+      "gold": "analysis",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "I agree, most of the proactive agent assistance use cases requires me to give out data I\u2019m hesitant to give like email, financial data, health data\u2026I\u2019m hoping someone makes a lower maintenance version of open source Muse or Grokbot or Dots (more user friendly than OpenClaw or Hermes) that I can easily deploy to my own AWS, Cloudflare, Vercel, or Fly account and use some ZDR friendly inference provider like Fireworks.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Wrong. That would be https://github.com/H4vC/oh-my-uefPiA single BOOTX64.EFI that boots a Hyper-V VM straight into a chat prompt, streams replies from an OpenAI-compatible /v1/chat/completions endpoint (DeepSeek by default), and boots whatever the model is asked to: Omarchy, netboot.xyz, or any UEFI image at an http(s) URL. No OS, no history. Dressed up like omp, for the memes",
+      "gold": "analysis",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "Have you tried it?",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "It's not quite the same principal OP articulates, which is that a compiler provides safety and that certainty lets you move fast when vibe coding. ... compiled, etc. languages are better suited for vibecoding",
+      "gold": "hot_take",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "This is evident in the WIP DetectDistinctScenes[] method. ... This method is more advanced than most. It uses CLIP behind the scenes to detect when classifications change for more than N frames in a video, and generates a list of timestamps you can use to determine scene changes.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "On the flipside, it also leads to better software.",
+      "gold": "hot_take",
+      "predicted": "analysis"
+    },
+    {
+      "text": "The term \\\"native\\\" is used to describe apps developed for a specific operating system. By this definition, clearly Electron apps (and hence Postman) are not native apps. ... For example, Electron supports including native modules which have to be compiled for a specific platform.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "This immediately started playing in my head, before I fully parsed the headline.https://www.youtube.com/watch?v=QBES0jOmbCs",
+      "gold": "reaction",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "Can you share a link to this? This aligns with my interests. Me and the homies love lisp machines",
+      "gold": "reaction",
+      "predicted": "analysis"
+    },
+    {
+      "text": "I don't know when web devs decided they could put a website in a box and call it native, but it's not very nice. By that logic, GTK/Qt, basically any cross platform GUI library etc. is not 'native'.",
+      "gold": "hot_take",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "I noticed there weren't boilerplates for AI projects like there were for web apps, so I built one. Same idea - everything you need to get a project up and running quickly. However, instead of web-framework/CSS/DB, it's tools for AI projects: evals, synthetic data gen, fine-tuning, and more.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "I mean starting a new project in C or C++ does kinda need a defensible reason at this point, at least in any corporate environment",
+      "gold": "hot_take",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Seems to me like they just copied Claude's distinction of Cowork because it sounded better to enterprises but it should never have been pushed to the userbase.",
+      "gold": "analysis",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "The real defensible reason is that with current tools available you can write perfectly safe (safer than Rust even) C++ code, while avoiding the horrid Rust compile times and without needing to pepper your code with unsafe all over the place. LLM's can help you formally verify your code and extensively fuzz/test it to the point where you can actually be sure (ie prove) that the code is safe, without really relying on Rusts compiler. Lastly, C++ lends itself more naturally to hardcore optimizations than Rust. But ultimately it really, _really_ comes down to a) Rust's horrid compile times and b) Rust's horrid metaprogramming support (this even kills it for LLM generated output because it wastes tokens).",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "It'd be great to see a quick comparison to firecracker rather than to a non-hypervisor linux system. The homepage and blog post only compare with the latter.",
+      "gold": "analysis",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "what's the point of saying all that?you already know what will happen. if the model is good enough, people will use it.you're asking for a lot of things here. I don't think most people take it that personally.",
+      "gold": "hot_take",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "I think they will. It\u2019s a pretty famous quote, even among people who were not old enough to see it first-hand at the time when Linus made that Usenet post.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Anyone trusting Zuck's company with deep personal data will deserve what they get.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Meta has a long history of treating their user\u2019s data recklessly. Cambridge Analytica being a prominent example.They\u2019ve also had a long history of using shady/deceptive practices to gather data, such as Onavo.Is their internal security up to par with other cloud providers? Maybe. Security from them? Definitely not to be trusted.(Former employee)",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "UI/UXMany times, UI/UX makes all the difference in user adoption & use.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "It's not, it's an Electron-based app (not bad by default). ... many folks don't consider Electron as native because it doesn't use native UI frameworks as it uses the web stack tech (JS/CSS/HTML/etc) to render.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "has been using CLIP models for smart search for a while and anecdotally seems to work really well [..] results are of similar quality to the giant SaaS providers I'm not super familiar with how the results for the \\\"giant SaaS providers\\\" are, but the demo instance of Immich doesn't seem to do it very well.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "It's an exokernel. It's kind of like if you modified a hypervisor specifically for running unikernels instead of classic VMs.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Totally theoretical of course",
+      "gold": "analysis",
+      "predicted": "hot_take"
+    }
+  ]
+}

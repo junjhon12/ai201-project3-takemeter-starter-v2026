@@ -228,19 +228,25 @@ the results are treated as a final human-labeled evaluation.
 
 | Measure | Baseline | Trained | Difference |
 |---|---|---|---|
-| Overall accuracy |  |  |  |
-| Macro F1 |  |  |  |
-| F1 — `label_one` |  |  |  |
-| F1 — `label_two` |  |  |  |
+| Overall accuracy | 0.583 | 0.688 | +0.104 |
+| Macro F1 | 0.364 | 0.272 | -0.092 |
+| F1 — `analysis` | 0.708 | 0.815 | +0.107 |
+| F1 — `hot_take` | 0.385 | 0.000 | -0.385 |
+| F1 — `reaction` | 0.000 | 0.000 | +0.000 |
 
 **What I predicted before I looked:**
 <!-- Milestone 1 asks you to write this BEFORE seeing the trained numbers. A
      prediction made afterwards isn't one. -->
 
+I expect the trained model may beat the baseline on accuracy, but lag on `hot_take` and `reaction` F1.
+
 **What the gap actually means:**
 <!-- If the baseline matched your trained model, your fine-tuning added
      nothing — and that is a real finding, not a failure. Say it plainly. -->
 
+On these same 48 held-out posts, the trained model was more accurate by 0.104 and had higher `analysis` F1, but the baseline's macro F1 was higher by 0.092 because it identified some `hot_take` posts while the trained model did not. Both models scored 0.000 F1 on `reaction` (5 posts), so this split gives no evidence that either model learned that label.
+
+The baseline used the definitions in `label_definitions.txt` and read `test_split.csv`; this was a like-for-like comparison, not the random-sample fallback.
 
 
 ---
