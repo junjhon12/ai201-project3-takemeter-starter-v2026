@@ -63,33 +63,50 @@ This was a convenience sample of comments on current Top Stories, not a represen
      The decision rule is worth a point on its own and it's the thing most
      people leave out. Every taxonomy has a hardest boundary. Name yours. -->
 
-### `label_one`
+### `analysis`
 
-**Definition:**
+**Definition:** Makes a claim and supports it with a specific, checkable fact or example that does real work in the reasoning.
 
-**Example 1:**
->
+**Example 1:** “Is graphical fidelity what people are looking for in a RuneScape game? Unreal seems like an interesting choice. OSRS has something like 5x the player base and the gap only seems to be growing, so it looks odd to me to putting so much investment into a continuation of RS3.” ([comment](https://news.ycombinator.com/item?id=49950249))
 
-**Example 2:**
->
+**Example 2:** “Take for instance something like suggestions on form fields: you start typing something and it presents some options from a hardcoded list that matches the prefix. This is natively achieved through the HTML element `<datalist>`. However, `<datalist>` implementations on most browsers suck to the point of being unusable.” ([comment](https://news.ycombinator.com/item?id=49952769))
 
-### `label_two`
+### `hot_take`
 
-**Definition:**
+**Definition:** States a confident general judgment or prediction without offering specific evidence or reasoning to support it.
 
-**Example 1:**
->
+**Example 1:** “Everything Jagex touches turns to shit. They are not good at creating. At best they are a steward for already created IP and the community provides that taste that makes it good.” ([comment](https://news.ycombinator.com/item?id=49950936))
 
-**Example 2:**
->
+**Example 2:** “This is the year of old browser (and/or flash) games making a comeback in some form.” ([comment](https://news.ycombinator.com/item?id=49946711))
+
+### `reaction`
+
+**Definition:** Primarily expresses the writer's immediate personal feeling or experience in response to the linked item, without developing a broader argument.
+
+**Example 1:** “This is a lot of fun (only tried on desktop)” ([comment](https://news.ycombinator.com/item?id=49953133))
+
+**Example 2:** “Well, this is strangely familiar to a game I just vibe-coded recently!” ([comment](https://news.ycombinator.com/item?id=49948822))
 
 ### The hardest boundary
 
-**Which two labels:**
+**Which two labels:** `analysis` and `hot_take`
 
-**The decision rule I used every time:**
-<!-- e.g. "If the post names a specific checkable fact, it's `analysis`, even
-     if the tone is heated." -->
+**The decision rule I used every time:** If a specific, checkable fact or example materially supports the comment's conclusion, label it `analysis`, even if the tone is opinionated; if the opinion would stand unchanged without that detail, label it `hot_take`. A number or example that is merely decorative does not count as support.
+
+### AI boundary stress test
+
+These eight synthetic comments were generated to test the definitions; they are not dataset examples.
+
+| Synthetic comment | Label | Why |
+|---|---|---|
+| “Across five cold starts, the page averaged 2.4 seconds to load, versus 0.6 seconds with the cache warm; uncached assets look like the bottleneck.” | `analysis` | The measured comparison supports the proposed cause. |
+| “I tested the native date picker in Safari and Firefox; only Safari let keyboard users reach the month selector, so the API behavior is inconsistent.” | `analysis` | A specific, checkable test supports the conclusion. |
+| “Native browser APIs are always a worse choice than libraries.” | `hot_take` | It is a broad, unsupported generalization. |
+| “No one needs another task-management app.” | `hot_take` | It makes a sweeping judgment without support. |
+| “Just opened the demo and I'm delighted; that little animation made my morning.” | `reaction` | The main point is an immediate personal feeling. |
+| “I saw the announcement a minute ago and I'm honestly gutted; I was hoping they'd keep the old version.” | `reaction` | It reports a personal reaction to the announcement, not a broader argument. |
+| “Support tickets about navigation rose from 20 to 36 the week the redesign shipped; that makes me think the new menu caused avoidable confusion.” | `analysis` | The concrete before-and-after count is offered as evidence for the conclusion. |
+| “I just saw the new release. I hate this direction; the whole product is doomed.” | `hot_take` | The immediate feeling is present, but the comment's main claim is a broad unsupported prediction. |
 
 
 
