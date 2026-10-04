@@ -42,7 +42,16 @@
 <!-- Your community, and what your classifier sorts posts into. Three or four
      sentences. -->
 
+I chose public Hacker News (news.ycombinator.com), using comments as the text to classify. I read 36 top-level comments across 13 discussions in the public Top Stories feed, spanning software, technology, games, and work. The comments ranged from brief reactions to detailed arguments and personal accounts. I will classify how comments support and develop a point, not whether I agree with them; these initial observations will guide, but do not settle, the labels for a 200-comment dataset.
 
+### Candidate distinctions from the initial reading
+
+- **Specific support:** Some comments include checkable details, links, numbers, or firsthand experience; others make a claim without an example. This appeared in the [browser-platform discussion](https://news.ycombinator.com/item?id=49950554) and [electrician discussion](https://news.ycombinator.com/item?id=49910462).
+- **Explained reasoning:** Some comments connect evidence to a conclusion or compare alternatives; others offer a broad judgment without explaining it. For example, comments in the [RuneScape discussion](https://news.ycombinator.com/item?id=49949588) varied between a blanket assessment and a question grounded in player-count comparisons.
+- **Qualification:** Some comments acknowledge uncertainty, tradeoffs, or another perspective while making their point. The [budget-caps discussion](https://news.ycombinator.com/item?id=49949235) included accounts of both the benefits and costs of hard limits.
+- **Actionable detail:** Some comments identify a specific problem and suggest a change, while others are brief reactions. This contrast was visible in the [game discussion](https://news.ycombinator.com/item?id=49946393), from a short expression of enjoyment to detailed usability feedback.
+
+This was a convenience sample of comments on current Top Stories, not a representative sample of all Hacker News comments. I will revisit these candidate distinctions while collecting and labeling the larger dataset.
 
 ---
 
