@@ -260,11 +260,15 @@ The baseline used the definitions in `label_definitions.txt` and read `test_spli
 
 | Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
 |---|---|---|---|---|---|
-| 1.  |  |  |  |  |  |
-| 2.  |  |  |  |  |  |
-| 3.  |  |  |  |  |  |
-| 4.  |  |  |  |  |  |
-| 5.  |  |  |  |  |  |
+| 1. Overall accuracy | ≥ 0.85 | 0.688 | 0.688 | 0.688 | MISSED |
+| 2. Per-label F1 (labels with ≥20 test examples) | ≥ 0.70 for each eligible label | `analysis`: 0.815 (n=33) | `analysis`: 0.815 (n=33) | `analysis`: 0.815 (n=33) | MET |
+| 3. Predicted label prevalence | Within ±10 pp of gold for every label | `analysis` +31.25 pp; `hot_take` −20.83 pp; `reaction` −10.42 pp | `analysis` +31.25 pp; `hot_take` −20.83 pp; `reaction` −10.42 pp | `analysis` +31.25 pp; `hot_take` −20.83 pp; `reaction` −10.42 pp | MISSED |
+| 4. Cohen's κ vs. independent human labels | ≥ 0.75 | Not available | Not available | Not available | UNMEASURABLE |
+| 5. Calibration | ECE ≤ 0.05 and precision ≥ 0.75 at confidence ≥ 0.80 | ECE 0.092; precision 0.750 (n=20) | ECE 0.092; no predictions ≥0.80 (n=0) | ECE 0.152; no predictions ≥0.80 (n=0) | MISSED |
+
+For criterion 3, the model predicted `analysis` for all 48 posts in every
+seed. The prevalence differences are prediction minus gold, in percentage
+points.
 
 ### Three-seed metrics
 
@@ -308,11 +312,11 @@ The largest off-diagonal is 10: 10 real `hot_take` posts were called `analysis`,
 
 | # | Criterion | Target | Verdict | How I decided |
 |---|---|---|---|---|
-| 1 |  |  |  |  |
-| 2 |  |  |  |  |
-| 3 |  |  |  |  |
-| 4 |  |  |  |  |
-| 5 |  |  |  |  |
+| 1 | Overall accuracy | ≥ 0.85 | MISSED | Accuracy was 0.688 for each seed, below 0.85 every time. |
+| 2 | Per-label F1 for labels with ≥20 test examples | ≥ 0.70 | MET | `analysis` is the only eligible label (33 test examples); its F1 was 0.815 in all three seeds. |
+| 3 | Predicted label prevalence | Within ±10 pp of gold for every label | MISSED | All three seeds predicted only `analysis`; absolute prevalence errors were 31.25 pp (`analysis`), 20.83 pp (`hot_take`), and 10.42 pp (`reaction`). |
+| 4 | Cohen's κ against independent human labels on held-out data | ≥ 0.75 | UNMEASURABLE | No independent human labels for the held-out posts are present, so κ cannot be calculated. |
+| 5 | ECE and high-confidence precision | ECE ≤ 0.05 and precision ≥ 0.75 at confidence ≥ 0.80 | MISSED | ECE was 0.092, 0.092, and 0.152; it exceeded the limit in every seed. High-confidence precision was 0.750 for seed 42 (20 predictions); seeds 7 and 2024 had no predictions at that threshold, so their precision is unavailable. |
 
 **Diagnoses**
 
@@ -325,6 +329,29 @@ The largest off-diagonal is 10: 10 real `hot_take` posts were called `analysis`,
      have that can tell a LABELLING problem from a MODEL problem, and this
      section is graded on whether you used it that way. -->
 
+**Criteria 1 and 3 — majority-class collapse:** The confusion matrix shows
+that all 48 test posts were predicted as `analysis`, including all 10
+`hot_take` and all 5 `reaction` posts. The model's 0.688 accuracy is exactly
+the gold `analysis` share (33/48), not evidence that it learned all three
+labels. It also explains the prevalence miss: predictions were 100%
+`analysis`, 0% `hot_take`, and 0% `reaction`, against gold shares of 68.75%,
+20.83%, and 10.42%. This establishes the model's observed failure mode, but
+does not establish whether inconsistent training labels caused it.
+
+**Criterion 5 — calibration miss:** The measured ECE exceeded 0.05 in every
+seed. At confidence ≥0.80, seed 42 had precision 0.75 over 20 predictions;
+seeds 7 and 2024 made no predictions at that confidence, so their precision
+cannot be estimated. These results establish a calibration/coverage problem,
+but the saved metrics alone do not identify its underlying cause.
+
+**Evidence limitation:** The requested agreement report cannot be used to
+separate labeling inconsistency from model/data limitations. The repository
+does not contain `data/staff_labels.csv` or `agreement_results.json`, and
+`my_staff_labels.csv` is not labels for the staff posts. I therefore cannot
+claim the misses came from a boundary applied inconsistently, too few
+examples, or an inherently difficult label pair. Criterion 4 is
+unmeasurable with the available held-out labels; its original target remains
+unchanged.
 
 
 ---
@@ -337,47 +364,22 @@ The largest off-diagonal is 10: 10 real `hot_take` posts were called `analysis`,
      data/staff_taxonomy.md, not your own — so every argument below is made
      from those definitions and those decision rules. -->
 
-**Agreement rate:** ___ / 30 = ___%
+**Agreement rate:** Not available — matching staff labels are missing.
+
+**Status:** Not calculable from the available files. `data/staff_labels.csv`
+is missing, so the supplied `data/staff_posts.csv` cannot be compared with
+staff answers. The available `my_staff_labels.csv` contains different posts
+and cannot be used as a substitute. No agreement rate or disagreement
+adjudications are reported rather than inventing them.
 
 <!-- Nobody grades this number. A 60% who argues every disagreement from the
      stated rules beats a 95% who wrote "staff was right" nine times. Several
      of the 30 were chosen because they're genuinely ambiguous — you should be
      winning some of these. -->
 
-**Disagreements**
-
-<!-- Three lines each: the post, both labels, and who you think is right and
-     why — grounded in the staff definitions you were both applying.
-
-     Then sort each into one of three piles:
-       (a) the rule covered it and I applied it loosely → a consistency problem
-       (b) the rule genuinely doesn't say               → a gap in the definitions
-       (c) the rule is ambiguous here and my reading is defensible → argue it.
-           This is a legitimate win.
-
-     Pile (a) is the one that matters most for your diagnosis: if you applied a
-     written rule two different ways on 30 posts, that is direct evidence about
-     what you did across your own 200. -->
-
-**1.**
-> *The post:*
->
-> *Staff said / I said:*
->
-> *My call, and why:*
->
-> *Which pile:*
-
-**2.**
-> *The post:*
->
-> *Staff said / I said:*
->
-> *My call, and why:*
->
-> *Which pile:*
-
-**What the pattern in my disagreements tells me:**
+**Disagreements:** Not available until the matching staff labels are supplied
+and `agreement.py` is run. No disagreement pattern can be inferred from the
+model confusion matrix.
 
 
 
