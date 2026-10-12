@@ -210,6 +210,19 @@ These three examples are boundary cases identified in the current dataset. Their
   the current training run, so its scores measure agreement with this
   provisional label set, not independently verified human ground truth.
 
+**Moment 3 — After-run error review**
+
+- *What I asked for:* Compare the three-seed results and confusion matrices to
+  identify the main failure pattern and a focused improvement to test.
+- *What came back:* The before run predicted `analysis` for every test post.
+  Class-weighted loss was suggested as a way to reduce that majority-class
+  collapse; the after run produced some minority-label predictions and higher
+  macro F1 in all three seeds, but missed the accuracy and prevalence targets
+  and had worse calibration.
+- *What I changed:* I enabled the notebook's existing class-weighted loss,
+  ran all three seeds, and reported the tradeoff instead of calling the
+  improvement a fix.
+
 **Pre-labelling disclosure:** An AI assistant suggested labels for 215 of the
 316 comments. I have not yet read and corrected every AI-suggested label; those
 rows remain marked `AI pre-label; review required`. The current model was
@@ -387,21 +400,40 @@ model confusion matrix.
 
 ## The Improvement
 
-**What I changed:**
+**What I changed:** I enabled the notebook's existing class-weighted loss for
+the after run. The full labelled set has 219 `analysis`, 63 `hot_take`, and 34
+`reaction` posts, so inverse-frequency loss weights penalize errors on the
+smaller labels more heavily.
 
-**Which diagnosis pointed at it:**
+**Which diagnosis pointed at it:** The before-run confusion matrix shows the
+model predicted `analysis` for all 48 posts, including every `hot_take` and
+`reaction` post. This directly addresses that majority-class collapse without
+changing the held-out data or the original targets.
 
 ### Run Log — After
 
 | Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
 |---|---|---|---|---|---|
-| 1.  |  |  |  |  |  |
-| 2.  |  |  |  |  |  |
-| 3.  |  |  |  |  |  |
-| 4.  |  |  |  |  |  |
-| 5.  |  |  |  |  |  |
+| 1. Overall accuracy | ≥ 0.85 | 0.604 | 0.729 | 0.625 | MISSED |
+| 2. Per-label F1 (labels with ≥20 test examples) | ≥ 0.70 for each eligible label | `analysis`: 0.757 (n=33) | `analysis`: 0.831 (n=33) | `analysis`: 0.761 (n=33) | MET |
+| 3. Predicted label prevalence | Within ±10 pp of gold for every label | `analysis` +16.67 pp; `hot_take` −12.50 pp; `reaction` −4.17 pp | `analysis` +22.92 pp; `hot_take` −12.50 pp; `reaction` −10.42 pp | `analysis` +10.42 pp; `hot_take` −18.75 pp; `reaction` +8.33 pp | MISSED |
+| 4. Cohen's κ vs. independent human labels | ≥ 0.75 | Not available | Not available | Not available | UNMEASURABLE |
+| 5. Calibration | ECE ≤ 0.05 and precision ≥ 0.75 at confidence ≥ 0.80 | ECE 0.191; no predictions ≥0.80 (n=0) | ECE 0.336; no predictions ≥0.80 (n=0) | ECE 0.216; no predictions ≥0.80 (n=0) | MISSED |
 
-**Did it help, and how do I know:**
+For criterion 3, the differences are predicted prevalence minus gold
+prevalence, in percentage points. Criterion 2's only eligible label is
+`analysis` (33 test examples in each seed). The raw three-seed results are in
+[`results_three_seeds_after.json`](results_three_seeds_after.json).
+
+**Did it help, and how do I know:** It partially helped the class-imbalance
+failure: macro F1 rose from 0.272 before to 0.336, 0.420, and 0.409 after, and
+the after confusion matrices include some `hot_take` and `reaction`
+predictions. It did not meet the accuracy or prevalence targets; accuracy
+ranged from 0.604 to 0.729 (a 0.125 spread), and ECE worsened in every seed
+compared with the before run. None of the after predictions reached 0.80
+confidence, so high-confidence precision is unavailable rather than zero.
+These metrics still compare against the provisional labels, not independent
+human ground truth.
 
 <!-- If it didn't, say so. Relabelling that didn't help is a genuinely
      interesting result and earns full credit. -->
@@ -414,12 +446,46 @@ model confusion matrix.
 
 <!-- For each criterion still missed: what you'd do, and why you stopped. -->
 
+**Criterion 1 — overall accuracy:** All after-run accuracies (0.604, 0.729,
+and 0.625) remain below 0.85. I would review the AI-prelabelled rows and add
+more independently checked examples, especially for the smaller labels; I
+stopped after testing class-weighted loss rather than repeatedly tuning against
+this small held-out set.
 
+**Criterion 3 — predicted label prevalence:** Every seed still overpredicts
+`analysis` and underpredicts `hot_take` beyond the ±10-point tolerance in at
+least two labels. I would audit the minority-label examples and collect a more
+balanced, human-reviewed training set; I stopped because the one tested
+intervention reduced but did not remove the bias, and additional weighting
+experiments on the same small data would not establish a reliable fix.
+
+**Criterion 4 — independent human agreement:** Cohen's κ is still
+unmeasurable because no independent human labels for the 48 held-out posts are
+available. I would have people label that held-out sample independently
+without seeing the model predictions; I stopped because those labels were not
+provided, and the provisional training labels cannot substitute for them.
+
+**Criterion 5 — calibration:** ECE is above 0.05 in every after seed, and
+there are no predictions at confidence ≥0.80 from which to estimate the
+required precision. I would calibrate on a larger, separately labelled
+validation set and then evaluate once on untouched test data; I stopped
+because this 48-post test set and provisional labels are not a sound basis for
+tuning and claiming calibration.
+
+The separate **Agreement Report** is also blocked: `data/staff_labels.csv` was
+not supplied, so `agreement.py` cannot compare my staff-post labels with the
+staff answers. I left the rate and disagreement adjudications unavailable
+rather than inventing them.
 
 **The gap between what I meant my labels to capture and what the model
 learned:**
 <!-- Two sentences. Your confusion matrix is the evidence. -->
 
+I meant `analysis` to require a checkable detail that supports an argument,
+`hot_take` to capture an unsupported general judgment, and `reaction` to
+capture an immediate personal response. In the before-run confusion matrix,
+all 10 true `hot_take` and all 5 true `reaction` posts were called `analysis`,
+so that run learned the dominant label rather than those distinctions.
 
 
 <!-- ═════════════════════════════════════════════════════════════════════
