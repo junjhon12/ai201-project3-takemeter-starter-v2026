@@ -359,8 +359,9 @@ but the saved metrics alone do not identify its underlying cause.
 
 **Evidence limitation:** The requested agreement report cannot be used to
 separate labeling inconsistency from model/data limitations. The repository
-does not contain `data/staff_labels.csv` or `agreement_results.json`, and
-`my_staff_labels.csv` is not labels for the staff posts. I therefore cannot
+does not contain `data/staff_labels.csv` or `agreement_results.json`.
+`my_staff_labels.csv` contains my labels for the supplied staff posts, but the
+official staff answers needed for comparison are missing. I therefore cannot
 claim the misses came from a boundary applied inconsistently, too few
 examples, or an inherently difficult label pair. Criterion 4 is
 unmeasurable with the available held-out labels; its original target remains
@@ -379,11 +380,11 @@ unchanged.
 
 **Agreement rate:** Not available — matching staff labels are missing.
 
-**Status:** Not calculable from the available files. `data/staff_labels.csv`
-is missing, so the supplied `data/staff_posts.csv` cannot be compared with
-staff answers. The available `my_staff_labels.csv` contains different posts
-and cannot be used as a substitute. No agreement rate or disagreement
-adjudications are reported rather than inventing them.
+**Status:** Not calculable from the available files. The 30 rows in
+`my_staff_labels.csv` match the supplied posts in `data/staff_posts.csv`, but
+`data/staff_labels.csv` is missing, so my labels cannot be compared with staff
+answers. No agreement rate or disagreement adjudications are reported rather
+than inventing them.
 
 <!-- Nobody grades this number. A 60% who argues every disagreement from the
      stated rules beats a 95% who wrote "staff was right" nine times. Several
