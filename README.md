@@ -21,6 +21,8 @@
 >
 > **The rest of this file is your submission.** Fill it in as you go.
 
+**Repository URL:** https://github.com/junjhon12/ai201-project3-takemeter-starter-v2026
+
 ---
 
 <!-- ─────────────────────────────────────────────────────────────────────────
@@ -130,14 +132,14 @@ These eight synthetic comments were generated to test the definitions; they are 
 | `reaction` | 34 | 10.8% |
 | **Total** | **316** | **100%** |
 
-The dataset is above the 200-comment target and each label is below the 70% ceiling. The label balance is still uneven; review the suggested labels and add more `reaction` examples if your corrected counts become more lopsided.
+The dataset exceeds the 200-comment target and each label is below the 70% ceiling. These counts describe the current provisional labels, not independently verified ground truth: 215 rows are still marked `AI pre-label; review required`. The label balance is uneven, with `reaction` the smallest class.
 
 **Three hard cases**
 
 <!-- Any post that made you pause: what it was, which two labels it could have
      been, and what you chose. These are worth more than the easy 190. -->
 
-The following are AI-identified candidate hard cases based on the current labels, not a claim about which posts personally made me pause. Confirm or replace them with the cases I actually found difficult before submission.
+These three examples are boundary cases identified in the current dataset. Their labels are still AI suggestions, so the choices and explanations below are provisional; they are not presented as my verified adjudications.
 
 **1. Candidate**
 > “As art projects go, this one has a lot of charm for me. Plenty of room for allegories (although apparently not the paperclips, haha). Timekeeping in general is a subject with depth across many domains-- particularly in software as we all know. So many different ways to do the 'same thing'.”

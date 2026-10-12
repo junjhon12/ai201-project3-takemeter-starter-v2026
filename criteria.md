@@ -55,8 +55,10 @@ whether you hit them:
 
 **Overall accuracy ≥ 0.85 on the held-out test set.**
 
-**Why this target:** This sets a clear minimum for general correctness across
-the whole test set before looking at finer-grained behavior.
+**Why this target:** `labels.csv` has 316 rows, and `analysis` is 69.3% of
+them. An 0.85 accuracy target is 15.7 percentage points above simply predicting
+that largest class, so it asks for useful overall performance rather than a
+majority-label shortcut.
 
 ---
 
@@ -64,8 +66,10 @@ the whole test set before looking at finer-grained behavior.
 
 **Per-label F1 ≥ 0.70 for every label with at least 20 test examples.**
 
-**Why this target:** Per-label F1 prevents strong majority-class performance
-from hiding a label that the classifier almost never gets right.
+**Why this target:** The held-out split has 33 `analysis` examples, 10
+`hot_take` examples, and only 5 `reaction` examples. A 0.70 F1 floor guards
+against ignoring a label while avoiding a brittle per-label threshold on tiny
+supports; on this split only `analysis` reaches the 20-example condition.
 
 ---
 
@@ -74,8 +78,11 @@ from hiding a label that the classifier almost never gets right.
 **Predicted label prevalence within ±10 percentage points of gold test-set
 prevalence for each label.**
 
-**Why this target:** This catches label collapse, where the classifier
-over-predicts one or two classes and under-predicts rare ones.
+**Why this target:** The full dataset is already uneven (69.3% `analysis`,
+19.9% `hot_take`, 10.8% `reaction`), so a model that predicts only the largest
+label could otherwise look deceptively accurate. A 10-point tolerance checks
+that predictions still reflect the smaller labels without demanding identical
+shares on a 48-post test set.
 
 ---
 
@@ -83,8 +90,11 @@ over-predicts one or two classes and under-predicts rare ones.
 
 **Cohen’s κ ≥ 0.75 against human labels on the held-out sample.**
 
-**Why this target:** Kappa measures agreement beyond chance, so it is a
-stronger agreement check than raw accuracy on imbalanced label sets.
+**Why this target:** With 215 of 316 rows marked as AI-suggested and still
+unreviewed, accuracy against this file is not independent human agreement.
+Kappa of 0.75 is a meaningful beyond-chance target only when evaluated against
+an independently human-labeled sample; the current provisional labels cannot
+establish that result.
 
 ---
 
@@ -93,9 +103,11 @@ stronger agreement check than raw accuracy on imbalanced label sets.
 **Expected Calibration Error (ECE) ≤ 0.05, and predictions with confidence
 ≥ 0.80 must have empirical precision ≥ 0.75.**
 
-**Why this target:** Calibration makes confidence scores meaningful for
-routing, review thresholds, or abstention instead of letting them be
-decorative.
+**Why this target:** `analysis` is nearly seven times as common as `reaction`,
+and their boundary depends on whether a specific fact supports an argument or
+the post mainly expresses an immediate feeling. Calibration and the 0.80
+confidence check make sure the model does not present those uncertain boundary
+calls as reliable.
 
 ---
 
